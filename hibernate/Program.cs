@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading; 	// Thread
+using System.Threading;           // Thread
 using System.Threading.Tasks;
-//using System.Diagnostics;   // Process
-using System.Windows.Forms; // Application
-using Microsoft.Win32; 		// Registry
+using System.Diagnostics;         // Process
+using System.Windows.Forms;       // Application
+using Microsoft.Win32;            // Registry
 
 namespace hibernate
 {
