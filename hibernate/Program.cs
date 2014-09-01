@@ -2,58 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;     // Thread
+using System.Threading; 	// Thread
 using System.Threading.Tasks;
-using System.IO;            // File
 //using System.Diagnostics;   // Process
 using System.Windows.Forms; // Application
-using Microsoft.Win32;      // Registry
+using Microsoft.Win32; 		// Registry
 
 namespace hibernate
 {
-    class Program
-    {
-        private static string CustomLibrary = @"SvtLib.dll";
-        //private static string ErrorLow = "Please enter TIME argument\nUsage: hibernate <seconds>";
-        private static string ErrorMedium = @"Please run as administrator";
-        private static string ErrorHigh = CustomLibrary + @" missing";
+	class Program
+	{
+		//private static string ErrorLow = "Please enter TIME argument\nUsage: hibernate <seconds>";
+		private static string ErrorMedium = "Please run as administrator";
 
-        static int Main(string[] args)
-        {
-            if (File.Exists(CustomLibrary))
-            {
-                if (isHibernationEnabled())
-                {
-                    return doHibernation(args);
-                }
-                else
-                {
-                    if (isAppElevated())
-                    {
-                        enableHibernation();
+		static int Main(string[] args)
+		{
+			if (isHibernationEnabled())
+			{
+				return doHibernation(args);
+			}
+			else
+			{
+				if (isAppElevated())
+				{
+					enableHibernation();
 
-                        return doHibernation(args);
-                    }
-                    else
-                    {
-                        Console.WriteLine(ErrorMedium);
-                        return 2;
-                    }
-                }
-            }
-            else
-            {
-                if (isHibernationEnabled())
-                {
-                    return doHibernation(args);
-                }
-                else
-                {
-                    Console.WriteLine(ErrorHigh);
-                    return 1;
-                }
-            }
-        }
+					return doHibernation(args);
+				}
+				else
+				{
+					Console.WriteLine(ErrorMedium);
+					return 2;
+				}
+			}
+		}
 
         private static bool isHibernationEnabled()
         {
